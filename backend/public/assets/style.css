@@ -1,0 +1,440 @@
+/* =========================================================
+   BASE
+   ========================================================= */
+* { box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    background: #f4f6fa;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+header {
+    background: linear-gradient(135deg, #1e40af, #0891b2);
+    color: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+header h1 { margin: 0 0 0.25rem; font-size: 1.75rem; }
+.subtitle { margin: 0; opacity: 0.9; font-size: 0.95rem; }
+
+main {
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+}
+
+.hidden { display: none; }
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.toolbar button {
+    background: #e5e7eb;
+    border: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.toolbar button:hover { background: #d1d5db; }
+.toolbar button:disabled { opacity: 0.6; cursor: wait; }
+
+.model-select { margin-left: auto; font-size: 0.9rem; }
+.model-select select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    margin-left: 0.4rem;
+}
+
+/* =========================================================
+   INPUT TABLE
+   ========================================================= */
+.table-wrap { overflow-x: auto; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.88rem;
+}
+
+th, td {
+    border: 1px solid #e5e7eb;
+    padding: 0.4rem;
+    text-align: left;
+}
+
+th { background: #f9fafb; font-weight: 600; }
+
+td input {
+    width: 100%;
+    border: none;
+    padding: 0.3rem;
+    font-size: 0.88rem;
+    background: transparent;
+}
+
+td input:focus { outline: 1px solid #3b82f6; background: white; }
+
+.actions { margin-top: 1rem; text-align: right; }
+
+#btn-predict {
+    background: #1e40af;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#btn-predict:hover { background: #1e3a8a; }
+#btn-predict:disabled { background: #9ca3af; cursor: not-allowed; }
+
+/* =========================================================
+   STATUS MESSAGES
+   ========================================================= */
+.error-box {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.error-box ul { margin: 0.5rem 0 0 1.2rem; padding: 0; }
+
+.live-status {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.live-status.success { background: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
+.live-status.warning { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+.live-status.error   { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+.live-status.info    { background: #eff6ff; color: #1e40af; border: 1px solid #93c5fd; }
+
+/* =========================================================
+   RESULTS HEADER
+   ========================================================= */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.results-header h2 {
+    margin: 0;
+    color: #1e40af;
+    border: none;
+    padding: 0;
+}
+
+.results-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+
+.btn-secondary {
+    background: #0891b2;
+    color: white;
+    border: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.btn-secondary:hover { background: #0e7490; }
+
+.meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem; }
+
+/* =========================================================
+   HERO — Tomorrow's forecast
+   ========================================================= */
+.hero {
+    border-radius: 16px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+}
+
+.verdict-dry   { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #78350f; }
+.verdict-maybe { background: linear-gradient(135deg, #e0f2fe, #bae6fd); color: #075985; }
+.verdict-rain  { background: linear-gradient(135deg, #dbeafe, #93c5fd); color: #1e3a8a; }
+.verdict-storm { background: linear-gradient(135deg, #c7d2fe, #818cf8); color: #312e81; }
+
+.hero-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    opacity: 0.75;
+    margin-bottom: 0.75rem;
+}
+
+.hero-emoji {
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+.hero-verdict {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-chance {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+}
+
+.hero-summary {
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.85;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(0,0,0,0.10);
+    display: inline-block;
+}
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+.section-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280;
+    font-weight: 700;
+    margin: 2rem 0 0.85rem;
+    padding: 0;
+    border: none;
+}
+
+/* =========================================================
+   7-DAY STRIP
+   ========================================================= */
+.day-strip {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 720px) {
+    .day-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.strip-day {
+    border-radius: 12px;
+    padding: 0.85rem 0.4rem;
+    text-align: center;
+    transition: transform 0.15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    background: white;
+}
+
+.strip-day:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,0.10); }
+
+.strip-day.verdict-dry   { background: #fffbeb; }
+.strip-day.verdict-maybe { background: #f0f9ff; }
+.strip-day.verdict-rain  { background: #eff6ff; }
+.strip-day.verdict-storm { background: #eef2ff; }
+
+.strip-today { outline: 3px solid #1e40af; outline-offset: 2px; }
+
+.strip-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+}
+
+.strip-emoji { font-size: 2rem; line-height: 1; margin-bottom: 0.4rem; }
+.strip-pct   { font-size: 1.15rem; font-weight: 800; color: #1e40af; margin-bottom: 0.2rem; }
+.strip-temp  { font-size: 0.85rem; font-weight: 600; color: #4b5563; }
+
+/* =========================================================
+   MODEL COMPARISON
+   ========================================================= */
+.model-compare {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.compare-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+}
+
+.compare-model   { font-size: 0.9rem; font-weight: 700; color: #1e40af; margin-bottom: 0.6rem; }
+.compare-emoji   { font-size: 2.5rem; line-height: 1; margin-bottom: 0.6rem; }
+.compare-verdict { font-size: 1.05rem; font-weight: 700; color: #1f2937; margin-bottom: 0.5rem; }
+.compare-meta    { font-size: 0.82rem; color: #6b7280; }
+
+/* =========================================================
+   DETAILS TOGGLE
+   ========================================================= */
+.details-toggle { text-align: center; margin: 1.5rem 0; }
+
+.details-toggle button {
+    background: transparent;
+    border: 2px solid #d1d5db;
+    color: #4b5563;
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.15s;
+}
+
+.details-toggle button:hover {
+    border-color: #1e40af;
+    color: #1e40af;
+    background: #eff6ff;
+}
+
+/* =========================================================
+   DETAILED VIEW
+   ========================================================= */
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.model-panel {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.model-panel h3 {
+    margin: 0 0 1rem;
+    color: #1e40af;
+    font-size: 1.05rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.day-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+}
+
+.day-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: #fafbfc;
+    font-size: 0.85rem;
+}
+
+.day-card-header  { font-weight: 600; font-size: 0.9rem; color: #1f2937; margin-bottom: 0.35rem; }
+.day-card-emoji   { font-size: 1.5rem; line-height: 1; margin-bottom: 0.35rem; }
+.day-card-summary { margin-bottom: 0.6rem; min-height: 1.1rem; }
+
+.day-card-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 0.8rem;
+}
+.day-card-row:last-child { border-bottom: none; }
+.day-card-label { color: #6b7280; }
+.day-card-value { font-weight: 600; color: #1f2937; }
+
+.rain-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.rain-none    { background: #f0fdf4; color: #065f46; }
+.rain-low     { background: #ecfdf5; color: #047857; }
+.rain-mid     { background: #fef3c7; color: #92400e; }
+.rain-high    { background: #fed7aa; color: #9a3412; }
+.rain-extreme { background: #fee2e2; color: #991b1b; }
+
+/* =========================================================
+   CHARTS
+   ========================================================= */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.25rem;
+}
+
+#charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.25rem;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.chart-card h4 { margin: 0 0 0.5rem; font-size: 0.95rem; }
+.chart-card canvas { max-height: 240px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.attribution {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6b7280;
+    padding: 2rem 1rem;
+}
+
+.attribution a { color: #1e40af; }
